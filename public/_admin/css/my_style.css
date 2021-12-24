@@ -1,0 +1,29 @@
+.btn-custom{
+    color: #fff;
+    display: inline-flex;
+    font-size: 11px;
+    justify-content: center;
+    min-width: 70px;
+    min-height: 28px;
+}
+.btn-border{
+    line-height: 2;
+    padding-right: 0.6em;
+    padding-left: 0.6em;
+    border-radius: 10rem;
+}
+.img-admin{
+
+    object-fit: cover;
+    width: 130px;
+    height: 80px;
+}
+.list-rule td{
+    padding: 0!important;
+}
+.list-rule tr{
+   border-bottom: none!important;
+}
+.list-rule td, .list-rule th{
+    border-top: none!important;
+}
