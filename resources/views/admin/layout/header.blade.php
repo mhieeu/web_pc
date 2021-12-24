@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="/_admin/css/feathericon.min.css">
     <link rel="stylehseet" href="https://cdn.oesmith.co.uk/morris-0.5.1.css">
     <link rel="stylesheet" href="/_admin/plugins/morris/morris.css">
-    <link rel="stylesheet" href="/_admin/css/style.css"> </head>
-    <link rel="stylesheet" href="/_admin/css/my_style.css"> </head>
+    <link rel="stylesheet" href="/_admin/css/style.css">
+    <link rel="stylesheet" href="/_admin/css/my_style.css">
     <link rel="stylesheet" href="/vendor/sweetalert2.min.css"> </head>
 
 <body>

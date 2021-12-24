@@ -78,12 +78,13 @@ class AuthController extends Controller
         $this->validate($request,
             [
                 'old_password' => ['required'],
-                'new_password' => ['required'],
+                'new_password' => ['required', 'min:6'],
                 'confirm_password' => ['required'],
             ],
             [
                 'old_password.required' => 'Vui lòng nhập mật khẩu hiện tại',
                 'new_password.required' => 'Vui lòng nhập mật khẩu mới',
+                'new_password.min' => 'Mật khẩu ít nhất 6 kí tự',
                 'confirm_password.required' => 'Vui lòng nhập mật khẩu xác nhận',
             ],
         );

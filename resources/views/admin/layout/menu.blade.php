@@ -73,6 +73,7 @@
                             <li><a href="{{ route('user.history') }}">Lịch sử hoạt động</a></li>
                         </ul>
                     </li>
+                    <li> <a href="{{ route('user.customer') }}"><i class="fas fa-user"></i> <span>Khách hàng</span></a> </li>
                 @endif
                 <li> <a href="{{ route('admin.get.change.pass') }}"><i class="fas fa-key"></i> <span>Đổi mật khẩu</span></a> </li>
 

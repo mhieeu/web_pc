@@ -9,6 +9,20 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function customer(Request $request){
+        $customers = User::orderBy('id', 'DESC')->whereIn('level', [2])->Email($request)->paginate();
+        $customers->appends(['email' => $request->phone]);
+        return view('admin.user.customer', compact('customers'));
+    }
+
+    public function customerDetail(Request $request){
+        $customer = User::find($request->id);
+        if($customer){
+            return response()->json(['data' => $customer, 'status' => 200]);
+        }
+        return response()->json(['status' => 404]);
+    }
+
     public function index(Request $request){
         $users = User::orderBy('id', 'DESC')->where('level', 2)->whereNotIn('id', [1])->Email($request)->paginate();
         $users->appends(['email' => $request->email]);
@@ -33,11 +47,14 @@ class UserController extends Controller
                     "unique:App\Models\User,email"
                 ],
                 'name' => ['required'],
+                'password' => ['required', 'min:6'],
             ],
             [
                 'name.required' => 'Chưa nhập tên!',
                 'email.required' => 'Chưa nhập email!',
                 'email.unique' => 'Email đã tồn tại!',
+                'password.required' => 'Chưa nhập mật khẩu!',
+                'password.min' => 'Mật khẩu ít nhất 6 kí tự!',
             ],
         );
         $hash = Hash::make($request->password);

@@ -43,9 +43,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-form-label col-md-2">Password</label>
+                                    <label class="col-form-label col-md-2">Mật khẩu</label>
                                     <div class="col-md-10">
-                                        <input type="password" class="form-control" name="password">
+                                        <input type="password" class="form-control" name="password" >
                                         @error('password')
                                         <span class="error text-danger" >{{ $message }}</span>
                                         @enderror

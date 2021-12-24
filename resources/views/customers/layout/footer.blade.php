@@ -68,7 +68,10 @@
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->
+    <script src="/vendor/popper.min.js"></script>
+{{--    <script type="text/javascript" src="https://unpkg.com/@popperjs/core@2"></script>--}}
     <script src="/_customer/js/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="/_customer/js/bootstrap.min.js"></script>
 <script src="/_customer/js/bootstrap.bundle.js"></script>
     <script src="/_customer/js/jquery.nice-select.min.js"></script>
@@ -79,6 +82,99 @@
     <script src="/_customer/js/main.js"></script>
     <script src="/vendor/sweetalert2.min.js"></script>
 
+
+    @if(Session::has('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Cập nhật',
+                text: '{{Session::get('success')}}',
+            })
+        </script>
+    @endif
+    @if(Session::has('error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Lỗi',
+                text: '{{Session::get('error')}}',
+            })
+        </script>
+    @endif
+    <script>
+
+        $( ".btn-change-pass" ).click(function( event ) {
+            event.preventDefault();
+            var password = $('.password').val().length;
+            if(password < 6){
+                $('.min-6').removeClass('d-none');
+            }
+            else{
+                $('.min-6').addClass('d-none');
+                $('#form-change-pass').submit();
+            }
+        });
+
+        $( ".btn-change-info" ).click(function( event ) {
+            event.preventDefault();
+            var name  = $('.name-kh').val();
+            var phone = $('.phone-kh').val();
+            var  address = $('.address-kh').text();
+            if(name == ''){
+                $('.validate-name').removeClass('d-none');
+            }
+            if(phone == ''){
+                $('.validate-phone').removeClass('d-none');
+            }
+            if(address == ''){
+                $('.validate-address').removeClass('d-none');
+            }
+            if(address != '' &&  phone != '' && name != ''){
+                $('#form-change-info').submit();
+            }
+        });
+
+        function isNumberKey(event){
+            var charCode =(event.which) ? event.which : event.keyCode
+            if(charCode >31 &&(charCode <48 || charCode >57))
+            return false;
+            return true;
+        }
+        $('.btn-detail-customer').click(function(){
+            var url = $(this).data('href');
+            var id = $(this).data('id');
+             $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: url,
+                method:'POST',
+                data:{id:id},
+                success:function(res){
+                    if(res.status === 200){
+                    console.log(res.data)
+                        if(res.data.name != null){
+                            $('.name-kh').val(res.data.name)
+                        }
+                        if(res.data.email != null){
+                            $('.email-kh').val(res.data.email)
+                        }
+                        if(res.data.phone != null){
+                            $('.phone-kh').val(res.data.phone)
+                        }
+                        if(res.data.address != null){
+                            $('.address-kh').text(res.data.address)
+                        }
+                    }
+                    else{
+
+                    }
+                }
+            })
+        })
+    </script>
     <script>
 
         loadCart();

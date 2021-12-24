@@ -22,14 +22,14 @@
                             </div>
                             <div class="checkout__input">
                                 <p>Email <span>*</span></p>
-                                <input type="text" name="email"  placeholder="Email">
+                                <input type="email" name="email"  placeholder="Email">
                                 @error('email')
                                     <i class="error text-danger">{{ $message }}</i>
                                 @enderror
                             </div>
                             <div class="checkout__input">
                                 <p>Số điện thoại <span>*</span></p>
-                                <input type="text" name="phone"  placeholder="Số điện thoại">
+                                <input type="text" onkeypress="return isNumberKey(event)" name="phone" maxlength="10"  placeholder="Số điện thoại">
                                 @error('phone')
                                     <i class="error text-danger">{{ $message }}</i>
                                 @enderror

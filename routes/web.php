@@ -49,6 +49,7 @@ Route::prefix('admin')->group(function () {
                 });
 
                 Route::prefix('user')->group(function () {
+                    Route::get('customer','Admin\UserController@customer')->name('user.customer');
                     Route::get('index','Admin\UserController@index')->name('user.index');
                     Route::get('add','Admin\UserController@add')->name('user.add');
                     Route::get('edit/{id}','Admin\UserController@edit')->name('user.edit');
@@ -79,6 +80,11 @@ Route::prefix('admin')->group(function () {
     });
 });
 
+Route::post('customer','Admin\UserController@customerDetail')->name('customer.detail');
+Route::post('customer-change-pass','customers\AuthController@customerChangePassWord')->name('customer.change.password');
+
+Route::post('/customer-edit', 'customers\AuthController@customerEdit')->name('customer.edit');
+Route::post('/customer-update', 'customers\AuthController@customerUpdate')->name('customer.update');
 Route::get('/', 'customers\IndexController@index')->name('index');// Trang chủ
 Route::get('/login', 'customers\AuthController@login')->name('customer.login');// Đăng nhập
 Route::post('/login', 'customers\AuthController@postLogin')->name('customer.login.post'); // gửi biểu mẫu đăng nhập

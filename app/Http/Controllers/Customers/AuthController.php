@@ -13,12 +13,37 @@ class AuthController extends Controller
     public function login(){
         return view('customers.auth.login');
     }
+    public function customerUpdate(Request $request){
 
+        $this->validate($request,
+            [
+                'name' => 'required',
+                'address' => 'required',
+                'phone' => 'required|digits_between:10,10',
+            ],
+            [
+                '*.required' => 'Trường không thể bỏ trống',
+            ]
+        );
+
+        if(Auth::check()){
+
+            $array = [
+                'name' => $request->name,
+                'address' => $request->address,
+                'phone' => $request->phone
+            ];
+            User::find(Auth::id())->update($array);
+            return back()->with('success', 'Cập nhật thành công');
+
+        }
+        return back()->with('error', 'Lỗi, vui lòng thử lại!');
+    }
     public function postLogin(Request $request){
         $this->validate($request,
         [
             'user_name' => 'required',
-            'password' => 'required|between:3,32',
+            'password' => 'required|between:6,32',
         ],
         [
             'user_name.required' => 'Trường không thể bỏ trống',
@@ -31,17 +56,17 @@ class AuthController extends Controller
         *  Kiểm tra tài khoản có bị khóa hay không
         ------------------------------------------ */
         $user = User::where('email', $request->user_name)->first();
-        if($user){
-            if($user->status == 0){
-                return back()->with([
-                    'error' => 'Tài khoản đã bị khóa',
-                ]);
-            }
-        }
+//        if($user){
+//            if($user->status == 0){
+//                return back()->with([
+//                    'error' => 'Tài khoản đã bị khóa',
+//                ]);
+//            }
+//        }
         /**---------------------
         *  Kiểm tra đăng nhập
         --------------------- */
-        if (Auth::attempt(['email' => $request->user_name, 'password' => $request->password, 'level' => 3])) {
+        if (Auth::attempt(['email' => $request->user_name, 'password' => $request->password])) {
             return redirect()->route('index');
         }
         return back()->with([
@@ -60,8 +85,8 @@ class AuthController extends Controller
             'email' => 'required',
             'address' => 'required',
             'phone' => 'required',
-            'password' => 'required|between:3,32',
-            'confirm_password' => 'same:password|between:3,32',
+            'password' => 'required|between:6,32',
+            'confirm_password' => 'same:password|between:6,32',
         ],
         [
             '*.required' => 'Trường không thể bỏ trống',
@@ -108,4 +133,30 @@ class AuthController extends Controller
         return redirect()->route('index');
     }
 
+    public function customerChangePassWord(Request $request){
+
+        $this->validate($request,
+            [
+                'curr_pwd' => 'required',
+                'password' =>  [
+                    'required',
+                    "min:6"
+                ],
+                'password_confirm' => 'required|same:password',
+            ]
+        );
+
+        if (Hash::check($request->curr_pwd, Auth::user()->password))
+        {
+            $arr = array(
+                'password' => Hash::make($request->password)
+            );
+            $update = User::find(Auth::id())->update($arr);
+            if($update){
+                return back()->with('success', 'Đổi mật khẩu thành công!');
+            }
+            return back()->with('error', 'Lỗi, vui lòng thử lại!');
+        }
+        return back()->with('error', 'Sai mật khẩu!');
+    }
 }
