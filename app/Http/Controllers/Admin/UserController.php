@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     public function customer(Request $request){
-        $customers = User::orderBy('id', 'DESC')->whereIn('level', [2])->Email($request)->paginate();
+        $customers = User::orderBy('id', 'DESC')->whereIn('level', [3])->Email($request)->paginate();
         $customers->appends(['email' => $request->phone]);
         return view('admin.user.customer', compact('customers'));
     }
