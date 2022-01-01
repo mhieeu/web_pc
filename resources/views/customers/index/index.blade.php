@@ -86,7 +86,7 @@
                 </div>
             </div>
         @endif
-        <div class="row featured__filter owl-carousel">
+        <div class="row featured__filter owl-carousel" data-mixitup-control>
             @foreach ($category->products as $product)
                 <div class="mix">
                     <div class="featured__item">
@@ -119,6 +119,7 @@
         </div>
         @endforeach
     </div>
+
 </section>
 <!-- Featured Section End -->
 

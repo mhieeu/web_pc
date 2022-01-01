@@ -18,6 +18,6 @@
     <link rel="stylesheet" href="/_customer/css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="/_customer/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="/_customer/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="/_customer/css/style.css" type="text/css">
     <link rel="stylesheet" href="/vendor/sweetalert2.min.css" type="text/css">
+    <link rel="stylesheet" href="/_customer/css/style.css" type="text/css">
 </head>

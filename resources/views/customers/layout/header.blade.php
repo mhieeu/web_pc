@@ -81,12 +81,13 @@
 {{--                                        Đăng xuất--}}
 {{--                                    </a>--}}
 {{--                                </li>--}}
+
                                 <li>
                                     <div class="dropdown">
-                                        <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuHeaderButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Xin chào @php echo Auth::user()->name @endphp
                                         </a>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuHeaderButton">
                                             <a class="dropdown-item btn-detail-customer" data-href="{{ route('customer.detail') }}"  data-toggle="modal" data-target="#edit"  data-id="{{Auth::id()}}">Thông tin</a>
                                             <a class="dropdown-item" data-href="{{ route('customer.change.password') }}"  data-toggle="modal" data-target="#changePwd"  data-id="{{Auth::id()}}">Đổi mật khẩu</a>
                                             <a class="dropdown-item" href="{{ route('customer.logout') }}">Đăng xuất</a>

@@ -68,19 +68,17 @@
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->
-    <script src="/vendor/popper.min.js"></script>
-{{--    <script type="text/javascript" src="https://unpkg.com/@popperjs/core@2"></script>--}}
     <script src="/_customer/js/jquery-3.3.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    {{-- <script src="/_customer/js/bootstrap.bundle.js"></script> --}}
+    <script src="/vendor/popper.min.js"></script>
     <script src="/_customer/js/bootstrap.min.js"></script>
-<script src="/_customer/js/bootstrap.bundle.js"></script>
     <script src="/_customer/js/jquery.nice-select.min.js"></script>
     <script src="/_customer/js/jquery-ui.min.js"></script>
     <script src="/_customer/js/jquery.slicknav.js"></script>
     <script src="/_customer/js/mixitup.min.js"></script>
     <script src="/_customer/js/owl.carousel.min.js"></script>
-    <script src="/_customer/js/main.js"></script>
     <script src="/vendor/sweetalert2.min.js"></script>
+    <script src="/_customer/js/main.js"></script>
 
 
     @if(Session::has('success'))
