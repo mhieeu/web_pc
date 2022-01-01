@@ -12,6 +12,9 @@ class ProductController extends Controller
 {
     public function detail($slug){
         $product = Product::withTrashed()->where('slug', $slug)->first();
+        if(!$product){
+            return redirect()->route('index');
+        }
         $id = $product->id;
         $idCategory = $product->category_id;
         $relatedProduct = Product::where(['category_id' => $idCategory])->get();

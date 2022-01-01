@@ -25,6 +25,9 @@ class CategoryController extends Controller
     public function edit($id){
 
         $cat = Category::find($id);
+        if(!$cat){
+            return redirect()->route('admin.dashboard');
+        }
         return view('admin.category.edit', compact('cat'));
     }
 
@@ -121,6 +124,9 @@ class CategoryController extends Controller
     public function destroy($id){
 
         $category = Category::find($id);
+        if(!$category){
+            return redirect()->route('voucher.index')->with('error', 'Xóa thất bại!');
+        }
         $pros = Product::where('category_id', $id)->get();
         if($pros->count() > 0){
             return redirect()->route('product.index')->with('error', 'Có '.$pros->count().' sản phẩm thuộc danh mục '.$category->name.', không thể xóa !');

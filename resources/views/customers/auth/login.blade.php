@@ -9,7 +9,7 @@
             <div class="checkout__form">
                 <h4 class="text-center">Đăng nhập</h4>
                 <form action="{{ route('customer.login.post') }}" method="post">
-                @include('notification')
+                {{-- @include('notification') --}}
                     @csrf
                     <div class="row justify-content-center">
                         <div class="col-lg-8 col-md-6">

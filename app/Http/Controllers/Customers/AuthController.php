@@ -97,27 +97,25 @@ class AuthController extends Controller
         /**------------------------------------------
         *  Kiểm tra tài khoản có bị trùng hay không
         ------------------------------------------ */
-        $userExists = false;
-        $users = User::where('level', 3)->get();
+        $users = User::get();
         foreach($users as $u){
             if($u->email == $request->email){
-                $userExists = true;
-                return $userExists;
+                return redirect()->route('customer.signin')->with('error', 'Tài khoản đã tồn tại');
             }
         };
         /**--------------------------
         *  Không trùng thì đăng ký
         ---------------------------*/
-        if(!$userExists){
-            $password = Hash::make($request->password); // mã hóa mật khẩu
-            $request->merge(['level' => 3, 'password' => $password]); // lv3 là khách hàng
-            $created = User::create($request->except('confirm_password'));
-            if($created){
-                return redirect()->route('customer.login')->with([
-                    'success' => 'Đăng ký thành công',
-                ]);
-            }
+
+        $password = Hash::make($request->password); // mã hóa mật khẩu
+        $request->merge(['level' => 3, 'password' => $password]); // lv3 là khách hàng
+        $created = User::create($request->except('confirm_password'));
+        if($created){
+            return redirect()->route('customer.login')->with([
+                'success' => 'Đăng ký thành công',
+            ]);
         }
+
         return back()->with([
             'error' => 'Email đã được đăng ký',
         ]);

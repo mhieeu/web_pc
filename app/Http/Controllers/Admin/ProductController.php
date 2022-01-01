@@ -135,6 +135,9 @@ class ProductController extends Controller
 
         $products = Product::find($id);
 
+        if(!$products){
+            return redirect()->route('voucher.index')->with('error', 'Xóa thất bại!');
+        }
         if($products->delete($id)){
             $data = [
                 'user_id' => Auth::id(),
@@ -179,7 +182,10 @@ class ProductController extends Controller
     }
 
     public function edit($id){
-        $pro = Product::find($id);
+        $pro = Product::withTrashed()->where('id', $id)->first();
+        if(!$pro){
+            return redirect()->route('admin.dashboard');
+        }
         $options = json_decode($pro->options);
         $cats = Category::orderBy('id', 'DESC')->get();
         return view('admin.product.edit', compact('pro', 'cats', 'options'));
@@ -202,12 +208,12 @@ class ProductController extends Controller
         );
 
         //kiem tra slug
-        $slugs = Product::whereNotIn('id', [$id])->pluck('slug')->all();
+        $slugs = Product::withTrashed()->whereNotIn('id', [$id])->pluck('slug')->all();
         if(in_array($request->slug, $slugs)){
             return redirect()->back()->withInput()->with('errorSlug', 'Slug đã đã tồn tại');
         }
 
-        $product = Product::find($id);
+        $product = Product::withTrashed()->where('id', $id)->first();
         if($product) {
             $array = [
                 'name' => $request->name,

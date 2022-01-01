@@ -22,6 +22,10 @@ class OrderController extends Controller
 
     public function destroy($id){
         $order = Order::find($id);
+
+        if(!$order){
+            return redirect()->route('voucher.index')->with('error', 'Xóa thất bại!');
+        }
         if($order){
             if($order->delete()){
                 OrderDetail::where('order_code', $id)->delete();
@@ -33,6 +37,9 @@ class OrderController extends Controller
 
     public function detail($id){
         $order = Order::find($id);
+        if(!$order){
+            return redirect()->route('admin.dashboard');
+        }
         $orderDetail = OrderDetail::where('order_code', $order->order_code)->get();
         return view('admin.order.detail', compact('order', 'orderDetail'));
     }

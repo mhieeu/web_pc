@@ -36,6 +36,9 @@ class UserController extends Controller
 
     public function edit($id){
         $user = User::find($id);
+        if(!$user){
+            return redirect()->route('admin.dashboard');
+        }
         return view('admin.user.edit', compact('user'));
     }
 
@@ -113,6 +116,9 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
+        if(!$user){
+            return redirect()->route('voucher.index')->with('error', 'Xóa thất bại!');
+        }
         if ($user->delete($id)) {
             return redirect()->route('user.index')->with('success', 'Xóa thành công!');
         }

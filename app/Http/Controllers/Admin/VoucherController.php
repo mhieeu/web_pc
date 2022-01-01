@@ -20,6 +20,9 @@ class VoucherController extends Controller
 
     public function edit($id){
         $voucher = Voucher::find($id);
+        if(!$voucher){
+            return redirect()->route('admin.dashboard');
+        }
         return view('admin.voucher.edit', compact('voucher'));
     }
 
@@ -59,6 +62,9 @@ class VoucherController extends Controller
     public function destroy($id){
 
         $voucher = Voucher::find($id);
+        if(!$voucher){
+            return redirect()->route('voucher.index')->with('error', 'Xóa thất bại!');
+        }
 
         $orderDetails = OrderDetail::where('voucher_id', $id)->get();
         if($orderDetails->count() > 0){

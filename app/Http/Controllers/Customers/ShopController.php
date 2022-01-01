@@ -38,7 +38,11 @@ class ShopController extends Controller
     }
 
     public function getByCategory(Request $request, $category){
-        $idCategory = Category::where(['status' => 1, 'slug' => $category])->first()->id;
+        $idCategory = Category::where(['status' => 1, 'slug' => $category])->first();
+        if(!$idCategory){
+            return redirect()->route('index');
+        }
+        $idCategory = $idCategory->id;
         $listCategory = Category::where('status', 1)->get();
         $listProduct = Product::where(['category_id' => $idCategory])->paginate(); // danh sách sản phẩm theo danh mục
         if(isset($request->sort) && $request->sort == 'up'){
