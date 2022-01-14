@@ -5,7 +5,7 @@
 {{-- @dd(json_decode($detailsProduct->options)) --}}
 @section('content')
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="{{ asset('_customer/img/breadcrumb.jpg') }}">
+    <section class="breadcrumb-section set-bg" data-setbg="{{ asset('_customer/img/hero-laptop.jpg') }}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">

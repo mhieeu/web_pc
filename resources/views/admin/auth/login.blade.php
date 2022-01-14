@@ -20,7 +20,7 @@
     <div class="login-wrapper">
         <div class="container">
             <div class="loginbox">
-                <div class="login-left"> <img class="img-fluid" src="/_admin/img/logo.png" alt="Logo"> </div>
+                <div class="login-left"> <img class="img-fluid" src="/_admin/img/online-shopping.png" alt="Logo"> </div>
                 <div class="login-right">
                     <div class="login-right-wrap">
                         <h1>Login</h1>

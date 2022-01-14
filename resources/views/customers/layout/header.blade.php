@@ -58,7 +58,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="{{ route('index') }}"><img src="{{ asset('_customer/img/logo.png') }}" alt=""></a>
+                        <a href="{{ route('index') }}"><img src="{{ asset('_customer/img/online-shopping.png') }}" style="margin-left:80px; width:100px; height:100px" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">

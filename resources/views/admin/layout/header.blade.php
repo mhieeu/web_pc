@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     @routes()
     <title>@yield('title')</title>
-    <link rel="shortcut icon" type="image/x-icon" href="/_admin/img/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/_admin/img/logo-icon.png">
     <link rel="stylesheet" href="/_admin/css/bootstrap.min.css">
     <link rel="stylesheet" href="/_admin/plugins/fontawesome/css/fontawesome.min.css">
     <link rel="stylesheet" href="/_admin/plugins/fontawesome/css/all.min.css">
